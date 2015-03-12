@@ -21,12 +21,18 @@ import com.michaelelin.StandMaster.command.StandMasterCommand;
 public class CommandTree {
 
     private StandMasterCommand commandBase = new ParentCommand("stand", "Armor stand commands")
-        .addSubcommand(new ReloadCommand("reload", "Reloads the plugin's configuration"))
-        .addSubcommand(new ListCommand("list", "Shows your current stand modifier list"))
-        .addSubcommand(new ClearCommand("clear", "Clears your current stand modifier list"))
-        .addSubcommand(new ModifierCommand("invisible", "Makes the stand invisible"))
-        .addSubcommand(new ModifierCommand("nobaseplate", "Removes the stand's baseplate"))
-        .addSubcommand(new ModifierCommand("nogravity", "Prevents the stand from falling"))
+        .addSubcommand(new ReloadCommand("reload", "Reloads the plugin's configuration")
+            .setPermission("standmaster.reload"))
+        .addSubcommand(new ListCommand("list", "Shows your current stand modifier list")
+            .setPermission("standmaster.stand.list"))
+        .addSubcommand(new ClearCommand("clear", "Clears your current stand modifier list")
+            .setPermission("standmaster.stand.clear"))
+        .addSubcommand(new ModifierCommand("invisible", "Makes the stand invisible")
+            .setPermission("standmaster.stand.invisible"))
+        .addSubcommand(new ModifierCommand("nobaseplate", "Removes the stand's baseplate")
+            .setPermission("standmaster.stand.nobaseplate"))
+        .addSubcommand(new ModifierCommand("nogravity", "Prevents the stand from falling")
+            .setPermission("standmaster.stand.nogravity"))
         .addSubcommand(new ParentCommand("pose", "Sets the stand's pose")
             .addSubcommand(new RotationCommand("body",
                     "Sets the stand's body rotation"))
@@ -39,9 +45,12 @@ public class CommandTree {
             .addSubcommand(new RotationCommand("rightleg",
                     "Sets the stand's right leg rotation"))
             .addSubcommand(new RotationCommand("head",
-                    "Sets the stand's head rotation")))
-        .addSubcommand(new ModifierCommand("showarms", "Shows arms on the stand"))
-        .addSubcommand(new ModifierCommand("small", "Makes the stand smaller"))
+                    "Sets the stand's head rotation"))
+            .setPermission("standmaster.stand.pose"))
+        .addSubcommand(new ModifierCommand("showarms", "Shows arms on the stand")
+            .setPermission("standmaster.stand.showarms"))
+        .addSubcommand(new ModifierCommand("small", "Makes the stand smaller")
+            .setPermission("standmaster.stand.small"))
         .addAlias("sm")
         .addAlias("standmaster");
 

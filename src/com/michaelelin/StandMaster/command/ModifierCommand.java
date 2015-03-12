@@ -57,7 +57,6 @@ public class ModifierCommand extends AbstractCommand {
                     .apply(value));
             player.sendMessage(ChatColor.AQUA + "Modifier added.");
         } catch (RuntimeException e) {
-            e.printStackTrace();
             printHelp(sender, context);
         }
     }
