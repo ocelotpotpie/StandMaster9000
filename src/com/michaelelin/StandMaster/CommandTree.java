@@ -7,13 +7,13 @@ import java.util.Iterator;
 
 import org.bukkit.command.CommandSender;
 
-import com.michaelelin.StandMaster.commands.ClearCommand;
-import com.michaelelin.StandMaster.commands.ListCommand;
-import com.michaelelin.StandMaster.commands.ModifierCommand;
-import com.michaelelin.StandMaster.commands.ParentCommand;
-import com.michaelelin.StandMaster.commands.ReloadCommand;
-import com.michaelelin.StandMaster.commands.RotationCommand;
-import com.michaelelin.StandMaster.commands.StandMasterCommand;
+import com.michaelelin.StandMaster.command.ClearCommand;
+import com.michaelelin.StandMaster.command.ListCommand;
+import com.michaelelin.StandMaster.command.ModifierCommand;
+import com.michaelelin.StandMaster.command.ParentCommand;
+import com.michaelelin.StandMaster.command.ReloadCommand;
+import com.michaelelin.StandMaster.command.RotationCommand;
+import com.michaelelin.StandMaster.command.StandMasterCommand;
 
 /**
  * Handles commands and provides some command-related tools.

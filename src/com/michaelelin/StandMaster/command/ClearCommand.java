@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.commands;
+package com.michaelelin.StandMaster.command;
 
 import java.util.Deque;
 
