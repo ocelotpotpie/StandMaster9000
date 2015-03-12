@@ -12,8 +12,17 @@ import com.michaelelin.StandMaster.StandMasterPlugin;
 import com.michaelelin.StandMaster.data.DataModifier;
 import com.michaelelin.StandMaster.data.StandMasterData;
 
+/**
+ * A command to print the player's current modifier list.
+ */
 public class ListCommand extends AbstractCommand {
 
+    /**
+     * Constructs a {@code ListCommand} from the given name and description.
+     *
+     * @param name the command's name
+     * @param description the command's description
+     */
     public ListCommand(String name, String description) {
         super(name, description);
     }

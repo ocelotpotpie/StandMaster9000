@@ -9,6 +9,9 @@ import org.bukkit.command.CommandSender;
 
 import com.michaelelin.StandMaster.CommandTree;
 
+/**
+ * An abstract {@code StandMasterCommand} implementation.
+ */
 public abstract class AbstractCommand implements StandMasterCommand {
 
     private final String name;

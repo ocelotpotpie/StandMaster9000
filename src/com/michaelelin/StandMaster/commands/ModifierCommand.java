@@ -18,7 +18,8 @@ import com.michaelelin.StandMaster.data.StandMasterData;
 public class ModifierCommand extends AbstractCommand {
 
     /**
-     * Constructs a ModifierCommand from the given name and description.
+     * Constructs a {@code ModifierCommand} from the given name and
+     * description.
      *
      * @param name the command's name
      * @param description the command's description

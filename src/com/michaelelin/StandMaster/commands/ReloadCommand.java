@@ -8,12 +8,12 @@ import org.bukkit.command.CommandSender;
 import com.michaelelin.StandMaster.StandMasterPlugin;
 
 /**
- * Command to reload the plugin's configuration.
+ * A command to reload the plugin's configuration.
  */
 public class ReloadCommand extends AbstractCommand {
 
     /**
-     * Constructs a ReloadCommand from the given name and description.
+     * Constructs a {@code ReloadCommand} from the given name and description.
      *
      * @param name the command's name
      * @param description the command's description

@@ -15,6 +15,9 @@ import com.michaelelin.StandMaster.commands.ReloadCommand;
 import com.michaelelin.StandMaster.commands.RotationCommand;
 import com.michaelelin.StandMaster.commands.StandMasterCommand;
 
+/**
+ * Handles commands and provides some command-related tools.
+ */
 public class CommandTree {
 
     private StandMasterCommand commandBase = new ParentCommand("stand", "Armor stand commands")
@@ -42,19 +45,49 @@ public class CommandTree {
         .addAlias("sm")
         .addAlias("standmaster");
 
+    /**
+     * Run a command from the given sender with the given arguments.
+     * @param sender the sender of the command
+     * @param args the arguments to the command
+     */
     public void issueCommand(CommandSender sender, String[] args) {
         commandBase.execute(sender, new ArrayDeque<String>(),
                 new ArrayDeque<String>(Arrays.asList(args)));
     }
 
+    /**
+     * Constructs a full command string from the given context and command.
+     *
+     * @param context a collection of strings representing the ancestors to
+     * this command
+     * @param command the command name
+     * @return the full command string
+     */
     public static String getFullCommand(Collection<String> context, String command) {
         return "/" + join(context, " ", command);
     }
 
+    /**
+     * Constructs a command "footprint" from the given context and command by
+     * separating tokens with a period.
+     *
+     * @param context a collection of strings representing the ancestors to
+     * this command
+     * @param command the command name
+     * @return the command footprint
+     */
     public static String getCommandFootprint(Collection<String> context, String command) {
         return join(context, ".", command);
     }
 
+    /**
+     * Joins the given strings with the given delimiter.
+     *
+     * @param parts the strings to join
+     * @param delim the delimiter
+     * @param suffixes additional strings to append
+     * @return the string created by joining the given strings
+     */
     public static String join(Collection<String> parts, String delim, String... suffixes) {
         if (parts.isEmpty()) {
             if (suffixes.length == 0) {

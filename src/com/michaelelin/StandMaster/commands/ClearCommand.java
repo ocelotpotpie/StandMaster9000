@@ -9,8 +9,17 @@ import org.bukkit.entity.Player;
 import com.michaelelin.StandMaster.StandMasterException;
 import com.michaelelin.StandMaster.StandMasterPlugin;
 
+/**
+ * A command to clear the player's current modifier list.
+ */
 public class ClearCommand extends AbstractCommand {
 
+    /**
+     * Constructs a {@code ClearCommand} from the given name and description.
+     *
+     * @param name the command's name
+     * @param description the command's description
+     */
     public ClearCommand(String name, String description) {
         super(name, description);
     }

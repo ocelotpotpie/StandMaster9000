@@ -3,6 +3,9 @@ package com.michaelelin.StandMaster.data;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A type of data used to modify the properties of an entity.
+ */
 public enum DataType {
     BOOLEAN(BooleanData.class),
     INT(IntData.class),
@@ -24,10 +27,22 @@ public enum DataType {
         this.clazz = clazz;
     }
 
+    /**
+     * Returns the data wrapper class associated with this data type.
+     *
+     * @return the data wrapper class
+     */
     public Class<? extends StandMasterData> toClass() {
         return clazz;
     }
 
+    /**
+     * Wraps a value of this data type in an instance of {@code
+     * StandMasterData}.
+     *
+     * @param value the value to wrap
+     * @return the wrapped value
+     */
     public StandMasterData wrapValue(String value) {
         switch(this) {
         case BOOLEAN:
@@ -47,6 +62,12 @@ public enum DataType {
         }
     }
 
+    /**
+     * Returns the data type corresponding to the given data wrapper class.
+     *
+     * @param clazz the wrapper class
+     * @return the data type
+     */
     public static DataType fromClass(Class<? extends StandMasterData> clazz) {
         return dataMap.get(clazz);
     }

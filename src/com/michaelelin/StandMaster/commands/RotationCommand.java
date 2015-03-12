@@ -13,12 +13,13 @@ import com.michaelelin.StandMaster.StandMasterPlugin;
 import com.michaelelin.StandMaster.data.StandMasterData;
 
 /**
- * Command to set rotation data.
+ * A command to set an entity's rotation data.
  */
 public final class RotationCommand extends ParentCommand {
 
     /**
-     * Constructs a RotationCommand from the given name and description.
+     * Constructs a {@code RotationCommand} from the given name and
+     * description.
      *
      * @param name the command's name
      * @param description the command's description

@@ -18,6 +18,9 @@ import com.michaelelin.StandMaster.StandMasterPlugin.Placement;
 import com.michaelelin.StandMaster.data.DataModifier;
 import com.michaelelin.StandMaster.data.StandMasterData;
 
+/**
+ * StandMaster9000 event handling.
+ */
 public class StandMasterListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

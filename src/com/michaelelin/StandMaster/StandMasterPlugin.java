@@ -15,6 +15,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.michaelelin.StandMaster.data.DataModifier;
 import com.michaelelin.StandMaster.data.StandMasterData;
 
+/**
+ * The StandMaster9000 plugin.
+ */
 public class StandMasterPlugin extends JavaPlugin {
 
     private static StandMasterPlugin instance;
@@ -23,6 +26,9 @@ public class StandMasterPlugin extends JavaPlugin {
     private ModifierTable modifierTable;
     private CommandTree commands;
 
+    /**
+     * A list of armor stand placement data to be processed.
+     */
     public List<Placement> placements;
 
     @Override
@@ -44,14 +50,18 @@ public class StandMasterPlugin extends JavaPlugin {
     public void onDisable() {
     }
 
-
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         commands.issueCommand(sender, args);
         return true;
     }
 
+    /**
+     * Returns the given player's armor stand modifier list.
+     *
+     * @param player the player
+     * @return the player's modifier list
+     */
     public List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable>
             getModifierList(Player player) {
         if (modifiers.containsKey(player)) {
@@ -65,19 +75,50 @@ public class StandMasterPlugin extends JavaPlugin {
         }
     }
 
+    /**
+     * Returns the modifier table.
+     *
+     * @return the modifier table
+     */
     public ModifierTable getModifierTable() {
         return modifierTable;
     }
 
+    /**
+     * Returns the active instance of the plugin.
+     *
+     * @return the active instance of the plugin
+     */
     public static StandMasterPlugin getInstance() {
         return instance;
     }
 
+    /**
+     * A wrapper for the location, player, and time of an armor stand
+     * placement.
+     */
     public static class Placement {
+        /**
+         * The armor stand's location.
+         */
         public final Location location;
+        /**
+         * The player who placed the armor stand.
+         */
         public final Player player;
+        /**
+         * The time at which the armor stand was placed.
+         */
         public final long time;
 
+        /**
+         * Constructs a {@code Placement} from the given location, player, and
+         * time.
+         *
+         * @param location the location
+         * @param player the player
+         * @param time the time
+         */
         public Placement(Location location, Player player, long time) {
             this.location = location;
             this.player = player;

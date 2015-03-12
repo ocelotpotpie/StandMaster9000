@@ -5,6 +5,9 @@ import java.util.Deque;
 
 import org.bukkit.command.CommandSender;
 
+/**
+ * A command for StandMaster9000.
+ */
 public interface StandMasterCommand {
 
     /**

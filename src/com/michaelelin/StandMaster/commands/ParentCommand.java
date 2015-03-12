@@ -8,12 +8,15 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+/**
+ * A dummy command that precedes another command.
+ */
 public class ParentCommand extends AbstractCommand {
 
     private final List<StandMasterCommand> subcommands;
 
     /**
-     * Constructs a ParentCommand from the given name and description.
+     * Constructs a {@code ParentCommand} from the given name and description.
      *
      * @param name the command's name
      * @param description the command's description
