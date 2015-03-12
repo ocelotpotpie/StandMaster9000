@@ -39,7 +39,7 @@ public class ListCommand extends AbstractCommand {
             player.sendMessage(ChatColor.AQUA + "Your current modifiers:");
             for (DataModifier<? extends Entity, ? extends StandMasterData>.Executable modifier
                     : StandMasterPlugin.getInstance().getModifierList(player)) {
-                sender.sendMessage(modifier.getFootprint() + ": " + modifier.getValue());
+                sender.sendMessage(modifier.getIdentifier() + ": " + modifier.getValue());
             }
         } else {
             printHelp(sender, context);

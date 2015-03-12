@@ -12,20 +12,20 @@ import org.bukkit.entity.EntityType;
  */
 public abstract class DataModifier<T extends Entity, V extends StandMasterData> {
 
-    private String footprint;
+    private String identifier;
     private DataType type;
     private EntityType eType;
 
     /**
-     * Constructs a {@code DataModifier} for the given command footprint,
-     * data type, and entity type.
+     * Constructs a {@code DataModifier} for the given command identifier, data
+     * type, and entity type.
      *
-     * @param footprint the footprint of the command that modifies the entity
+     * @param identifier the identifier of the command that modifies the entity
      * @param type the type of data used to modify the entity
      * @param eType the type of entity to modify
      */
-    public DataModifier(String footprint, DataType type, EntityType eType) {
-        this.footprint = footprint;
+    public DataModifier(String identifier, DataType type, EntityType eType) {
+        this.identifier = identifier;
         this.type = type;
         this.eType = eType;
     }
@@ -77,13 +77,13 @@ public abstract class DataModifier<T extends Entity, V extends StandMasterData> 
         }
 
         /**
-         * Returns the footprint of the command that performs this
+         * Returns the identifier of the command that performs this
          * modification.
          *
-         * @return the command's footprint
+         * @return the command's identifier
          */
-        public String getFootprint() {
-            return footprint;
+        public String getIdentifier() {
+            return identifier;
         }
 
         /**

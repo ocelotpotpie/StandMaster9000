@@ -77,15 +77,15 @@ public class CommandTree {
     }
 
     /**
-     * Constructs a command "footprint" from the given context and command by
+     * Constructs a command identifier from the given context and command by
      * separating tokens with a period.
      *
      * @param context a collection of strings representing the ancestors to
      * this command
      * @param command the command name
-     * @return the command footprint
+     * @return the command identifier
      */
-    public static String getCommandFootprint(Collection<String> context, String command) {
+    public static String getCommandIdentifier(Collection<String> context, String command) {
         return join(context, ".", command);
     }
 

@@ -51,7 +51,7 @@ public class ModifierTable {
      */
     public DataModifier<? extends Entity, ? extends StandMasterData> get(
             Collection<String> context, String name) {
-        return get(CommandTree.getCommandFootprint(context, name));
+        return get(CommandTree.getCommandIdentifier(context, name));
     }
 
     /**
@@ -221,7 +221,7 @@ public class ModifierTable {
      */
     public void add(Collection<String> context, String name,
             DataModifier<? extends Entity, ? extends StandMasterData> mod) {
-        add(CommandTree.getCommandFootprint(context, name), mod);
+        add(CommandTree.getCommandIdentifier(context, name), mod);
     }
 
 }
