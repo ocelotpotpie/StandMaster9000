@@ -1,0 +1,12 @@
+name: ${project.name}
+main: com.michaelelin.StandMaster.StandMasterPlugin
+version: ${project.version}
+description: ${project.description}
+website: ${project.url}
+database: false
+softdepend: [WorldGuard]
+authors: [Dumbo52]
+commands:
+  stand:
+    description: StandMaster9000 commands
+    aliases: [sm, standmaster]
