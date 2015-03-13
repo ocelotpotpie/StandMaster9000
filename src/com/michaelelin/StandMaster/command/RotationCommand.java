@@ -63,7 +63,7 @@ public final class RotationCommand extends ParentCommand {
         } else {
             StandMasterCommand command = getSubcommand(args.poll());
 
-            if (command == null) {
+            if (command == null || !command.canUse(sender)) {
                 printHelp(sender, context);
             } else {
                 context.add(getName());

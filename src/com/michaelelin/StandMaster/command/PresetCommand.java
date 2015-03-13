@@ -70,9 +70,11 @@ public final class PresetCommand extends ParentCommand {
                 StandMasterPlugin.getInstance().getModifierList(player).addAll(mods);
                 player.sendMessage(ChatColor.AQUA + "Preset loaded.");
             }
-        } else {
+        } else if (command.canUse(sender)) {
             context.add(getName());
             command.execute(sender, context, args);
+        } else {
+            printHelp(player, context);
         }
     }
 
