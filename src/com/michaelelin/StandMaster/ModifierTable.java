@@ -17,6 +17,7 @@ import com.michaelelin.StandMaster.data.DataType;
 import com.michaelelin.StandMaster.data.FloatData;
 import com.michaelelin.StandMaster.data.RotationData;
 import com.michaelelin.StandMaster.data.StandMasterData;
+import com.michaelelin.StandMaster.data.StringData;
 
 /**
  * A table that maps commands (as strings or context,name pairs) to
@@ -58,6 +59,14 @@ public class ModifierTable {
      * Adds the default armor stand modifiers.
      */
     public void addDefaults() {
+        add("stand.name", new DataModifier<ArmorStand, StringData>("stand.name",
+                DataType.STRING, EntityType.ARMOR_STAND) {
+            @Override
+            protected void execute(ArmorStand object, StringData value) {
+                object.setCustomName(value.value);
+                object.setCustomNameVisible(true);
+            }
+        });
         add("stand.invisible", new DataModifier<ArmorStand, BooleanData>("stand.invisible",
                 DataType.BOOLEAN, EntityType.ARMOR_STAND) {
             @Override

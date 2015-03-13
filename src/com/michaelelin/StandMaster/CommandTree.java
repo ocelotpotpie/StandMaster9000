@@ -37,6 +37,8 @@ public class CommandTree {
             .setPermission("standmaster.stand.list"))
         .addSubcommand(new ClearCommand("clear", "Clears your current stand modifier list")
             .setPermission("standmaster.stand.clear"))
+        .addSubcommand(new ModifierCommand("name", "Gives the stand a visible nametag")
+            .setPermission("standmaster.stand.name"))
         .addSubcommand(new ModifierCommand("invisible", "Makes the stand invisible")
             .setPermission("standmaster.stand.invisible"))
         .addSubcommand(new ModifierCommand("nobaseplate", "Removes the stand's baseplate")
