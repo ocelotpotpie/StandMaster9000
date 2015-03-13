@@ -41,7 +41,7 @@ public class PresetManager {
         if (name == null) {
             return null;
         }
-        return new ArrayList<>(presets.get(name));
+        return new ArrayList<>(presets.get(name.toLowerCase()));
     }
 
     /**
@@ -55,12 +55,12 @@ public class PresetManager {
         if (presets.containsKey(name)) {
             throw new StandMasterException("That preset already exists - remove it first.");
         }
-        presets.put(name, preset);
+        presets.put(name.toLowerCase(), new ArrayList<>(preset));
         savePresets();
     }
 
     public boolean remove(String name) {
-        boolean removed = presets.remove(name) != null;
+        boolean removed = presets.remove(name.toLowerCase()) != null;
         if (removed) {
             savePresets();
         }
@@ -87,7 +87,7 @@ public class PresetManager {
         if (presetConfig != null) {
             for (Entry<String, Object> entry : presetConfig.getValues(false).entrySet()) {
                 try {
-                    presets.put(entry.getKey(),
+                    presets.put(entry.getKey().toLowerCase(),
                             deserialize(((MemorySection) entry.getValue()).getValues(true)));
                 } catch (Exception e) {
                     StandMasterPlugin.getInstance().getLogger().warning(
