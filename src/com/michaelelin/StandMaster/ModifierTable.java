@@ -33,10 +33,10 @@ public class ModifierTable {
     }
 
     /**
-     * Gets the modifier from the given command.
+     * Gets the modifier from the given command identifier.
      *
-     * @param command the command
-     * @return the modifier for the command
+     * @param command the command identifier
+     * @return the modifier for the command identifier
      */
     public DataModifier<? extends Entity, ? extends StandMasterData> get(String command) {
         return table.get(command);
@@ -162,14 +162,14 @@ public class ModifierTable {
     }
 
     /**
-     * Maps the given command to the given modifier.
+     * Maps the given command identifier to the given modifier.
      *
-     * @param command the command
+     * @param identifier the command identifier
      * @param mod the modifier
      */
-    public void add(String command,
+    public void add(String identifier,
             DataModifier<? extends Entity, ? extends StandMasterData> mod) {
-        table.put(command, mod);
+        table.put(identifier, mod);
     }
 
     /**
@@ -186,34 +186,35 @@ public class ModifierTable {
                 DataType.ROTATION, EntityType.ARMOR_STAND) {
             @Override
             protected void execute(ArmorStand object, RotationData value) {
-                mutator.mutate(object, new EulerAngle(value.x, value.y, value.z));
+                mutator.mutate(object, new EulerAngle(Math.toRadians(value.x),
+                        Math.toRadians(value.y), Math.toRadians(value.z)));
             }
         });
         add(command + ".x", new DataModifier<ArmorStand, FloatData>(command + ".x",
                 DataType.FLOAT, EntityType.ARMOR_STAND) {
             @Override
             protected void execute(ArmorStand object, FloatData value) {
-                mutator.mutate(object, accessor.access(object).setX(value.value));
+                mutator.mutate(object, accessor.access(object).setX(Math.toRadians(value.value)));
             }
         });
         add(command + ".y", new DataModifier<ArmorStand, FloatData>(command + ".y",
                 DataType.FLOAT, EntityType.ARMOR_STAND) {
             @Override
             protected void execute(ArmorStand object, FloatData value) {
-                mutator.mutate(object, accessor.access(object).setY(value.value));
+                mutator.mutate(object, accessor.access(object).setY(Math.toRadians(value.value)));
             }
         });
         add(command + ".z", new DataModifier<ArmorStand, FloatData>(command + ".z",
                 DataType.FLOAT, EntityType.ARMOR_STAND) {
             @Override
             protected void execute(ArmorStand object, FloatData value) {
-                mutator.mutate(object, accessor.access(object).setZ(value.value));
+                mutator.mutate(object, accessor.access(object).setZ(Math.toRadians(value.value)));
             }
         });
     }
 
     /**
-     * Maps the given command to the given modifier.
+     * Maps the given command identifier to the given modifier.
      *
      * @param context the context of the command
      * @param name the name of the command

@@ -11,10 +11,25 @@ public final class FloatData implements StandMasterData {
 
     /**
      * Constructs a FloatData object from a given float value.
+     *
      * @param value the float value
      */
     public FloatData(float value) {
         this.value = value;
+    }
+
+    /**
+     * Constructs a FloatData object from a given double value.
+     *
+     * @param value the double value
+     */
+    public FloatData(double value) {
+        this.value = (float) value;
+    }
+
+    @Override
+    public Object serialize() {
+        return value;
     }
 
     @Override

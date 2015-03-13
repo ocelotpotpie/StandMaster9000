@@ -16,7 +16,12 @@ public final class StringData implements StandMasterData {
     public StringData(String value) {
         this.value = value;
     }
-    
+
+    @Override
+    public Object serialize() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return value;

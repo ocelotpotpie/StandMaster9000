@@ -11,10 +11,16 @@ public final class BooleanData implements StandMasterData {
 
     /**
      * Constructs a BooleanData object from a given boolean value.
+     *
      * @param value the boolean value
      */
     public BooleanData(boolean value) {
         this.value = value;
+    }
+
+    @Override
+    public Object serialize() {
+        return value;
     }
 
     @Override

@@ -95,6 +95,11 @@ public abstract class DataModifier<T extends Entity, V extends StandMasterData> 
             return value;
         }
 
+        @Override
+        public String toString() {
+            return getIdentifier() + ": " + getValue();
+        }
+
     }
 
 }

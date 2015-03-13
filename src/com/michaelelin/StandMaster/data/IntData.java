@@ -11,10 +11,16 @@ public final class IntData implements StandMasterData {
 
     /**
      * Constructs an IntData object from a given int value
+     *
      * @param value the int value
      */
     public IntData(int value) {
         this.value = value;
+    }
+
+    @Override
+    public Object serialize() {
+        return value;
     }
 
     @Override

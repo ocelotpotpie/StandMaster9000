@@ -7,6 +7,9 @@ Help for any command can be accessed by just typing "/stand".
 | Command                           | Permission                    | Description                             |
 | --------------------------------- | ----------------------------- | --------------------------------------- |
 | /stand reload                     | standmaster.reload            | Reloads the plugin's configuration      |
+| /stand preset \<preset\>          | standmaster.preset.load       | Loads a modifier preset                 |
+| /stand preset add \<preset\>      | standmaster.preset.add        | Adds a modifier preset                  |
+| /stand preset remove \<preset\>   | standmaster.preset.remove     | Removes a modifier preset               |
 | /stand list                       | standmaster.stand.list        | Shows your current stand modifier list  |
 | /stand clear                      | standmaster.stand.clear       | Clears your current stand modifier list |
 | /stand invisible \<BOOLEAN\>      | standmaster.stand.invisible   | Makes the stand invisible               |

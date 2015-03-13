@@ -5,12 +5,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import com.michaelelin.StandMaster.command.ClearCommand;
 import com.michaelelin.StandMaster.command.ListCommand;
 import com.michaelelin.StandMaster.command.ModifierCommand;
 import com.michaelelin.StandMaster.command.ParentCommand;
+import com.michaelelin.StandMaster.command.PresetAddCommand;
+import com.michaelelin.StandMaster.command.PresetCommand;
+import com.michaelelin.StandMaster.command.PresetRemoveCommand;
 import com.michaelelin.StandMaster.command.ReloadCommand;
 import com.michaelelin.StandMaster.command.RotationCommand;
 import com.michaelelin.StandMaster.command.StandMasterCommand;
@@ -23,6 +27,12 @@ public class CommandTree {
     private StandMasterCommand commandBase = new ParentCommand("stand", "Armor stand commands")
         .addSubcommand(new ReloadCommand("reload", "Reloads the plugin's configuration")
             .setPermission("standmaster.reload"))
+        .addSubcommand(new PresetCommand("preset", "Loads a modifier preset")
+            .addSubcommand(new PresetAddCommand("add", "Adds a modifier preset")
+                .setPermission("standmaster.preset.add"))
+            .addSubcommand(new PresetRemoveCommand("remove", "Removes a modifier preset")
+                .setPermission("standmaster.preset.remove"))
+            .setPermission("standmaster.preset.load"))
         .addSubcommand(new ListCommand("list", "Shows your current stand modifier list")
             .setPermission("standmaster.stand.list"))
         .addSubcommand(new ClearCommand("clear", "Clears your current stand modifier list")
@@ -60,8 +70,12 @@ public class CommandTree {
      * @param args the arguments to the command
      */
     public void issueCommand(CommandSender sender, String[] args) {
-        commandBase.execute(sender, new ArrayDeque<String>(),
-                new ArrayDeque<String>(Arrays.asList(args)));
+        try {
+            commandBase.execute(sender, new ArrayDeque<String>(),
+                    new ArrayDeque<String>(Arrays.asList(args)));
+        } catch (StandMasterException e) {
+            sender.sendMessage(ChatColor.RED + e.getMessage());
+        }
     }
 
     /**

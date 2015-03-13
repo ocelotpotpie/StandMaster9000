@@ -25,7 +25,7 @@ public class ReloadCommand extends AbstractCommand {
     @Override
     public void execute(CommandSender sender, Deque<String> context, Deque<String> args) {
         if (args.isEmpty()) {
-            StandMasterPlugin.getInstance().reloadConfig();
+            StandMasterPlugin.getInstance().reload();
             sender.sendMessage(ChatColor.AQUA + "Configuration reloaded.");
         } else {
             printHelp(sender, context);

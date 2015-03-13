@@ -5,4 +5,11 @@ package com.michaelelin.StandMaster.data;
  */
 public interface StandMasterData {
 
+    /**
+     * Serializes this object into a standard data type.
+     *
+     * @return the serialized object
+     */
+    public Object serialize();
+
 }

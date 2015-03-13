@@ -70,15 +70,24 @@ public class ParentCommand extends AbstractCommand {
      * @param sender the sender to send the subcommands to
      */
     public void printSubcommands(CommandSender sender) {
-        if (subcommands.isEmpty()) {
+        List<StandMasterCommand> allowed = getAllowedSubcommands(sender);
+        if (allowed.isEmpty()) {
             sender.sendMessage("No subcommands");
         }
+        for (StandMasterCommand subcommand : allowed) {
+            sender.sendMessage(ChatColor.GOLD + subcommand.getName() + ChatColor.WHITE + " - "
+                    + subcommand.getDescription());
+        }
+    }
+
+    protected List<StandMasterCommand> getAllowedSubcommands(CommandSender sender) {
+        List<StandMasterCommand> allowed = new ArrayList<StandMasterCommand>();
         for (StandMasterCommand subcommand : subcommands) {
             if (subcommand.canUse(sender)) {
-                sender.sendMessage(ChatColor.GOLD + subcommand.getName() + ChatColor.WHITE + " - "
-                        + subcommand.getDescription());
+                allowed.add(subcommand);
             }
         }
+        return allowed;
     }
 
     @Override

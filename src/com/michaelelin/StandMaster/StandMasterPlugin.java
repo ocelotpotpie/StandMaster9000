@@ -25,6 +25,7 @@ public class StandMasterPlugin extends JavaPlugin {
             ? extends StandMasterData>.Executable>> modifiers;
     private ModifierTable modifierTable;
     private CommandTree commands;
+    private PresetManager presetManager;
 
     /**
      * A list of armor stand placement data to be processed.
@@ -37,17 +38,20 @@ public class StandMasterPlugin extends JavaPlugin {
         this.reloadConfig();
 
         instance = this;
-        modifiers = new HashMap<Player, List<DataModifier<? extends Entity,
-                ? extends StandMasterData>.Executable>>();
+        modifiers = new HashMap<>();
         modifierTable = new ModifierTable();
         modifierTable.addDefaults();
         commands = new CommandTree();
+        presetManager = new PresetManager();
         placements = new ArrayList<Placement>();
         getServer().getPluginManager().registerEvents(new StandMasterListener(), this);
     }
 
-    @Override
-    public void onDisable() {
+    /**
+     * Reloads the plugin's configuration.
+     */
+    public void reload() {
+        presetManager.loadPresets();
     }
 
     @Override
@@ -82,6 +86,15 @@ public class StandMasterPlugin extends JavaPlugin {
      */
     public ModifierTable getModifierTable() {
         return modifierTable;
+    }
+
+    /**
+     * Returns the preset manager.
+     *
+     * @return the preset manager
+     */
+    public PresetManager getPresetManager() {
+        return presetManager;
     }
 
     /**
