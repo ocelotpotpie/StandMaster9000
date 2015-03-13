@@ -47,6 +47,11 @@ public class StandMasterPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new StandMasterListener(), this);
     }
 
+    @Override
+    public void onDisable() {
+        instance = null;
+    }
+
     /**
      * Reloads the plugin's configuration.
      */
@@ -76,6 +81,17 @@ public class StandMasterPlugin extends JavaPlugin {
                         .Executable>();
             modifiers.put(player, l);
             return l;
+        }
+    }
+
+    /**
+     * Removes the given player's modifier list, if it exists.
+     *
+     * @param player the player
+     */
+    public void removeModifierList(Player player) {
+        if (modifiers.containsKey(player)) {
+            modifiers.remove(player);
         }
     }
 

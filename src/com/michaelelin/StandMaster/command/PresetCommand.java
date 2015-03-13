@@ -67,9 +67,6 @@ public final class PresetCommand extends ParentCommand {
             if (mods == null || !args.isEmpty()) {
                 printHelp(player, context);
             } else {
-                for (DataModifier<? extends Entity, ? extends StandMasterData>.Executable mod : mods) {
-                    System.out.println(mod.getIdentifier() + ": " + mod.getValue());
-                }
                 StandMasterPlugin.getInstance().getModifierList(player).addAll(mods);
                 player.sendMessage(ChatColor.AQUA + "Preset loaded.");
             }

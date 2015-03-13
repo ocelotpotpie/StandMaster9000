@@ -13,6 +13,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.michaelelin.StandMaster.StandMasterPlugin.Placement;
 import com.michaelelin.StandMaster.data.DataModifier;
@@ -48,7 +49,8 @@ public class StandMasterListener implements Listener {
                         && p.location.getBlockY() == loc.getBlockY()
                         && p.location.getBlockZ() == loc.getBlockZ()
                         && p.time == loc.getWorld().getFullTime()) {
-                    List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> mods =
+                    List<DataModifier<? extends Entity,
+                            ? extends StandMasterData>.Executable> mods =
                             StandMasterPlugin.getInstance().getModifierList(p.player);
                     for (DataModifier<? extends Entity, ? extends StandMasterData>.Executable mod
                             : mods) {
@@ -61,6 +63,11 @@ public class StandMasterListener implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        StandMasterPlugin.getInstance().removeModifierList(event.getPlayer());
     }
 
 }
