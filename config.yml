@@ -1,0 +1,15 @@
+presets:
+  sample:
+    stand.name: It works!
+    stand.nobaseplate: true
+    stand.nogravity: true
+    stand.pose.body.x: -10.0
+    stand.pose.body.z: 10.0
+    stand.pose.head: [0.0, 20.0, 15.0]
+    stand.pose.leftarm.x: -40.0
+    stand.pose.leftleg.x: -75.0
+    stand.pose.leftleg.y: -30.0
+    stand.pose.rightarm.y: -60.0
+    stand.pose.rightarm.z: 150.0
+    stand.pose.rightleg: [20.0, -30.0, 45.0]
+    stand.showarms: true
