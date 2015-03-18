@@ -8,12 +8,8 @@ import java.util.Map;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import com.michaelelin.StandMaster.data.DataModifier;
-import com.michaelelin.StandMaster.data.StandMasterData;
 
 /**
  * The StandMaster9000 plugin.
@@ -21,8 +17,7 @@ import com.michaelelin.StandMaster.data.StandMasterData;
 public class StandMasterPlugin extends JavaPlugin {
 
     private static StandMasterPlugin instance;
-    private Map<Player, List<DataModifier<? extends Entity,
-            ? extends StandMasterData>.Executable>> modifiers;
+    private Map<Player, ModifierSet> modifiers;
     private ModifierTable modifierTable;
     private CommandTree commands;
     private PresetManager presetManager;
@@ -71,16 +66,13 @@ public class StandMasterPlugin extends JavaPlugin {
      * @param player the player
      * @return the player's modifier list
      */
-    public List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable>
-            getModifierList(Player player) {
+    public ModifierSet getModifierList(Player player) {
         if (modifiers.containsKey(player)) {
             return modifiers.get(player);
         } else {
-            List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> l =
-                    new ArrayList<DataModifier<? extends Entity, ? extends StandMasterData>
-                        .Executable>();
-            modifiers.put(player, l);
-            return l;
+            ModifierSet list = new ModifierSet();
+            modifiers.put(player, list);
+            return list;
         }
     }
 

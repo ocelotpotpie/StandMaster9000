@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -17,7 +16,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.michaelelin.StandMaster.StandMasterPlugin.Placement;
 import com.michaelelin.StandMaster.data.DataModifier;
-import com.michaelelin.StandMaster.data.StandMasterData;
 
 /**
  * StandMaster9000 event handling.
@@ -49,11 +47,8 @@ public class StandMasterListener implements Listener {
                         && p.location.getBlockY() == loc.getBlockY()
                         && p.location.getBlockZ() == loc.getBlockZ()
                         && p.time == loc.getWorld().getFullTime()) {
-                    List<DataModifier<? extends Entity,
-                            ? extends StandMasterData>.Executable> mods =
-                            StandMasterPlugin.getInstance().getModifierList(p.player);
-                    for (DataModifier<? extends Entity, ? extends StandMasterData>.Executable mod
-                            : mods) {
+                    ModifierSet mods = StandMasterPlugin.getInstance().getModifierList(p.player);
+                    for (DataModifier<?, ?>.Executable mod : mods) {
                         mod.modify(event.getEntity());
                     }
                     placements.remove(i);

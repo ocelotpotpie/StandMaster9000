@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import com.michaelelin.StandMaster.CommandTree;
 import com.michaelelin.StandMaster.StandMasterException;
 import com.michaelelin.StandMaster.StandMasterPlugin;
-import com.michaelelin.StandMaster.data.StandMasterData;
+import com.michaelelin.StandMaster.data.DataModifier;
 
 /**
  * A command to set an entity's rotation data.
@@ -51,11 +51,13 @@ public final class RotationCommand extends ParentCommand {
 
         if (args.size() == 3) {
             try {
-                StandMasterData value = StandMasterPlugin.getInstance().getModifierTable()
-                        .get(context, getName()).getType().wrapValue(CommandTree.join(args, " "));
-                StandMasterPlugin.getInstance().getModifierList(player).add(
-                        StandMasterPlugin.getInstance().getModifierTable().get(context, getName())
-                        .apply(value));
+                String[] axes = {"x", "y", "z"};
+                for (int i = 0; i < 3; i++) {
+                    DataModifier<?, ?> modifier = StandMasterPlugin.getInstance()
+                            .getModifierTable().get(context, getName() + "." + axes[i]);
+                    StandMasterPlugin.getInstance().getModifierList(player).add(
+                            modifier.apply(modifier.getType().wrapValue(args.poll())));
+                }
                 player.sendMessage(ChatColor.AQUA + "Modifier added.");
             } catch (Exception e) {
                 printHelp(sender, context);

@@ -19,7 +19,7 @@ public final class BooleanData implements StandMasterData {
     }
 
     @Override
-    public Object serialize() {
+    public Boolean serialize() {
         return value;
     }
 

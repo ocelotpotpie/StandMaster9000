@@ -1,26 +1,19 @@
 package com.michaelelin.StandMaster;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemorySection;
-import org.bukkit.entity.Entity;
-
-import com.michaelelin.StandMaster.data.DataModifier;
-import com.michaelelin.StandMaster.data.StandMasterData;
+import org.bukkit.configuration.file.FileConfiguration;
 
 /**
  * Manages armor stand presets.
  */
 public class PresetManager {
-    private Map<String, List<DataModifier<? extends Entity,
-            ? extends StandMasterData>.Executable>> presets;
+    private Map<String, ModifierSet> presets;
 
     /**
      * Constructs a new preset manager.
@@ -36,12 +29,11 @@ public class PresetManager {
      * @param name the preset's name
      * @return the preset with the given name
      */
-    public List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> get(
-            String name) {
+    public ModifierSet get(String name) {
         if (name == null) {
             return null;
         }
-        return new ArrayList<>(presets.get(name.toLowerCase()));
+        return presets.get(name).clone();
     }
 
     /**
@@ -50,19 +42,24 @@ public class PresetManager {
      * @param name the preset's name
      * @param preset the preset
      */
-    public void add(String name,
-            List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> preset) {
+    public void add(String name, ModifierSet preset) {
         if (presets.containsKey(name)) {
             throw new StandMasterException("That preset already exists - remove it first.");
         }
-        presets.put(name.toLowerCase(), new ArrayList<>(preset));
-        savePresets();
+        presets.put(name.toLowerCase(), preset.clone());
+        savePreset(name.toLowerCase());
     }
 
+    /**
+     * Removes the preset with the given name.
+     *
+     * @param name the preset's name
+     * @return whether a preset was removed
+     */
     public boolean remove(String name) {
         boolean removed = presets.remove(name.toLowerCase()) != null;
         if (removed) {
-            savePresets();
+            savePreset(name.toLowerCase());
         }
         return removed;
     }
@@ -88,7 +85,7 @@ public class PresetManager {
             for (Entry<String, Object> entry : presetConfig.getValues(false).entrySet()) {
                 try {
                     presets.put(entry.getKey().toLowerCase(),
-                            deserialize(((MemorySection) entry.getValue()).getValues(true)));
+                            new ModifierSet(((MemorySection) entry.getValue()).getValues(false)));
                 } catch (Exception e) {
                     StandMasterPlugin.getInstance().getLogger().warning(
                             "There was a problem loading the \"" + entry.getKey()
@@ -99,42 +96,15 @@ public class PresetManager {
     }
 
     /**
-     * Saves the current preset list to the plugin configuration.
+     * Saves the given preset to the plugin configuration.
+     *
+     * @param name the name of the preset
      */
-    public void savePresets() {
-        Map<String, Map<String, Object>> ser = new TreeMap<>();
-        for (Entry<String, List<DataModifier<? extends Entity,
-                ? extends StandMasterData>.Executable>> entry : presets.entrySet()) {
-            ser.put(entry.getKey(), serialize(entry.getValue()));
-        }
-        StandMasterPlugin.getInstance().getConfig().set("presets", ser);
+    public void savePreset(String name) {
+        FileConfiguration config = StandMasterPlugin.getInstance().getConfig();
+        ConfigurationSection presetSection = config.getConfigurationSection("presets");
+        presetSection.set(name, presets.get(name).serialize());
         StandMasterPlugin.getInstance().saveConfig();
-    }
-
-    private List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> deserialize(
-            Map<String, Object> ser) {
-        List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> mods =
-                new ArrayList<>();
-        for (Entry<String, Object> entry : ser.entrySet()) {
-            // Figure out a better way of doing this
-            if (!(entry.getValue() instanceof MemorySection)) {
-                DataModifier<? extends Entity, ? extends StandMasterData> mod =
-                        StandMasterPlugin.getInstance().getModifierTable().get(entry.getKey());
-                if (mod != null) {
-                    mods.add(mod.apply(mod.getType().deserialize(entry.getValue())));
-                }
-            }
-        }
-        return mods;
-    }
-
-    private Map<String, Object> serialize(List<DataModifier<? extends Entity,
-            ? extends StandMasterData>.Executable> mods) {
-        Map<String, Object> ser = new HashMap<String, Object>();
-        for (DataModifier<? extends Entity, ? extends StandMasterData>.Executable mod : mods) {
-            ser.put(mod.getIdentifier(), mod.getValue().serialize());
-        }
-        return ser;
     }
 
 }

@@ -2,7 +2,7 @@
 Bukkit plugin to allow in-game editing of armor stand data.
 
 ## Usage
-This plugin works by allowing players to make *modifications* to armor stand data through commands. Each modification changes a particular aspect of an armor stand; after you have made the modifications you want, the next armor stand you place will have the specified modifications. Note that modifications are evaluated in the order in which they were added, so if you add two modifications that modify the same property, the one you added most recently will be applied. Your current modification list can be viewed with "/stand list", or cleared with "/stand clear".
+This plugin works by allowing players to make *modifications* to armor stand data through commands. Each modification changes a particular aspect of an armor stand; after you have made the modifications you want, the next armor stand you place will have the specified modifications. Your current modification list can be viewed with "/stand list", or cleared with "/stand clear".
 
 Info on all available modifications is in the [Commands](#commands) section.
 

@@ -1,11 +1,13 @@
 package com.michaelelin.StandMaster.command;
 
+import java.util.Collection;
 import java.util.Deque;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.michaelelin.StandMaster.CommandTree;
 import com.michaelelin.StandMaster.StandMasterException;
 import com.michaelelin.StandMaster.StandMasterPlugin;
 
@@ -22,6 +24,13 @@ public class PresetAddCommand extends AbstractCommand {
      */
     public PresetAddCommand(String name, String description) {
         super(name, description);
+    }
+
+    @Override
+    public void printHelp(CommandSender sender, Collection<String> context) {
+        super.printHelp(sender, context);
+        sender.sendMessage("Usage: " + CommandTree.getFullCommand(context, getName())
+                + " <preset>");
     }
 
     @Override

@@ -18,7 +18,7 @@ public final class StringData implements StandMasterData {
     }
 
     @Override
-    public Object serialize() {
+    public String serialize() {
         return value;
     }
 

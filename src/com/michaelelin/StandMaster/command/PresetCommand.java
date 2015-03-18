@@ -2,18 +2,14 @@ package com.michaelelin.StandMaster.command;
 
 import java.util.Collection;
 import java.util.Deque;
-import java.util.List;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.michaelelin.StandMaster.CommandTree;
+import com.michaelelin.StandMaster.ModifierSet;
 import com.michaelelin.StandMaster.StandMasterException;
 import com.michaelelin.StandMaster.StandMasterPlugin;
-import com.michaelelin.StandMaster.data.DataModifier;
-import com.michaelelin.StandMaster.data.StandMasterData;
 
 /**
  * A command to load, add, or remove a modifier preset.
@@ -62,8 +58,7 @@ public final class PresetCommand extends ParentCommand {
         StandMasterCommand command = getSubcommand(arg);
 
         if (command == null) {
-            List<DataModifier<? extends Entity, ? extends StandMasterData>.Executable> mods =
-                    StandMasterPlugin.getInstance().getPresetManager().get(arg);
+            ModifierSet mods = StandMasterPlugin.getInstance().getPresetManager().get(arg);
             if (mods == null || !args.isEmpty()) {
                 printHelp(player, context);
             } else {

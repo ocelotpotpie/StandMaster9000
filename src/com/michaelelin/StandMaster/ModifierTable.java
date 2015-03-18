@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.EulerAngle;
 
@@ -15,8 +14,6 @@ import com.michaelelin.StandMaster.data.DataModifier;
 import com.michaelelin.StandMaster.data.DataMutator;
 import com.michaelelin.StandMaster.data.DataType;
 import com.michaelelin.StandMaster.data.FloatData;
-import com.michaelelin.StandMaster.data.RotationData;
-import com.michaelelin.StandMaster.data.StandMasterData;
 import com.michaelelin.StandMaster.data.StringData;
 
 /**
@@ -24,13 +21,13 @@ import com.michaelelin.StandMaster.data.StringData;
  * DataModifiers.
  */
 public class ModifierTable {
-    private Map<String, DataModifier<? extends Entity, ? extends StandMasterData>> table;
+    private Map<String, DataModifier<?, ?>> table;
 
     /**
      * Constructs a new modifier table.
      */
     public ModifierTable() {
-        table = new HashMap<String, DataModifier<? extends Entity, ? extends StandMasterData>>();
+        table = new HashMap<String, DataModifier<?, ?>>();
     }
 
     /**
@@ -39,7 +36,7 @@ public class ModifierTable {
      * @param command the command identifier
      * @return the modifier for the command identifier
      */
-    public DataModifier<? extends Entity, ? extends StandMasterData> get(String command) {
+    public DataModifier<?, ?> get(String command) {
         return table.get(command);
     }
 
@@ -50,8 +47,7 @@ public class ModifierTable {
      * @param name the name of the command
      * @return the modifier for the command
      */
-    public DataModifier<? extends Entity, ? extends StandMasterData> get(
-            Collection<String> context, String name) {
+    public DataModifier<?, ?> get(Collection<String> context, String name) {
         return get(CommandTree.getCommandIdentifier(context, name));
     }
 
@@ -176,8 +172,7 @@ public class ModifierTable {
      * @param identifier the command identifier
      * @param mod the modifier
      */
-    public void add(String identifier,
-            DataModifier<? extends Entity, ? extends StandMasterData> mod) {
+    public void add(String identifier, DataModifier<?, ?> mod) {
         table.put(identifier, mod);
     }
 
@@ -191,14 +186,6 @@ public class ModifierTable {
      */
     public void addRotation(String command, final DataAccessor<ArmorStand, EulerAngle> accessor,
             final DataMutator<ArmorStand, EulerAngle> mutator) {
-        add(command, new DataModifier<ArmorStand, RotationData>(command,
-                DataType.ROTATION, EntityType.ARMOR_STAND) {
-            @Override
-            protected void execute(ArmorStand object, RotationData value) {
-                mutator.mutate(object, new EulerAngle(Math.toRadians(value.x),
-                        Math.toRadians(value.y), Math.toRadians(value.z)));
-            }
-        });
         add(command + ".x", new DataModifier<ArmorStand, FloatData>(command + ".x",
                 DataType.FLOAT, EntityType.ARMOR_STAND) {
             @Override
@@ -229,8 +216,7 @@ public class ModifierTable {
      * @param name the name of the command
      * @param mod the modifier
      */
-    public void add(Collection<String> context, String name,
-            DataModifier<? extends Entity, ? extends StandMasterData> mod) {
+    public void add(Collection<String> context, String name, DataModifier<?, ?> mod) {
         add(CommandTree.getCommandIdentifier(context, name), mod);
     }
 

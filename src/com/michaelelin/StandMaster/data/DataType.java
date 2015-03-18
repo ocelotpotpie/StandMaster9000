@@ -1,7 +1,6 @@
 package com.michaelelin.StandMaster.data;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,8 +10,7 @@ public enum DataType {
     BOOLEAN(BooleanData.class),
     INT(IntData.class),
     FLOAT(FloatData.class),
-    STRING(StringData.class),
-    ROTATION(RotationData.class);
+    STRING(StringData.class);
 
     private static Map<Class<? extends StandMasterData>, DataType> dataMap;
     static {
@@ -54,10 +52,6 @@ public enum DataType {
             return new FloatData(Float.valueOf(value));
         case STRING:
             return new StringData(value);
-        case ROTATION:
-            String[] components = value.split(" ", 3);
-            return new RotationData(Float.valueOf(components[0]), Float.valueOf(components[1]),
-                    Float.valueOf(components[2]));
         default:
             return null;
         }
@@ -69,7 +63,6 @@ public enum DataType {
      * @param value the serialized object
      * @return a {@code StandMasterData} representation of the value this type
      */
-    @SuppressWarnings("unchecked")
     public StandMasterData deserialize(Object value) {
         switch(this) {
         case BOOLEAN:
@@ -80,9 +73,6 @@ public enum DataType {
             return new FloatData((Double) value);
         case STRING:
             return new StringData((String) value);
-        case ROTATION:
-            List<Double> components = (List<Double>) value;
-            return new RotationData(components.get(0), components.get(1), components.get(2));
         default:
             return null;
         }

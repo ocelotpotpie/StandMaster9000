@@ -4,13 +4,11 @@ import java.util.Deque;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.michaelelin.StandMaster.StandMasterException;
 import com.michaelelin.StandMaster.StandMasterPlugin;
 import com.michaelelin.StandMaster.data.DataModifier;
-import com.michaelelin.StandMaster.data.StandMasterData;
 
 /**
  * A command to print the player's current modifier list.
@@ -37,7 +35,7 @@ public class ListCommand extends AbstractCommand {
 
         if (args.isEmpty()) {
             player.sendMessage(ChatColor.AQUA + "Your current modifiers:");
-            for (DataModifier<? extends Entity, ? extends StandMasterData>.Executable modifier
+            for (DataModifier<?, ?>.Executable modifier
                     : StandMasterPlugin.getInstance().getModifierList(player)) {
                 sender.sendMessage(modifier.getIdentifier() + ": " + modifier.getValue());
             }

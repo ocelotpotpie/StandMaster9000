@@ -28,7 +28,7 @@ public final class FloatData implements StandMasterData {
     }
 
     @Override
-    public Object serialize() {
+    public Float serialize() {
         return value;
     }
 

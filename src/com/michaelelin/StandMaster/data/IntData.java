@@ -19,7 +19,7 @@ public final class IntData implements StandMasterData {
     }
 
     @Override
-    public Object serialize() {
+    public Integer serialize() {
         return value;
     }
 

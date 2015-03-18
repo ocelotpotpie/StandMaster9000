@@ -49,7 +49,7 @@ public abstract class DataModifier<T extends Entity, V extends StandMasterData> 
     /**
      * The class that executes the given modification on a given entity.
      */
-    public final class Executable {
+    public final class Executable implements Comparable<DataModifier<?, ?>.Executable> {
         private V value;
 
         /**
@@ -93,6 +93,11 @@ public abstract class DataModifier<T extends Entity, V extends StandMasterData> 
          */
         public V getValue() {
             return value;
+        }
+
+        @Override
+        public int compareTo(DataModifier<?, ?>.Executable o) {
+            return identifier.compareTo(o.getIdentifier());
         }
 
         @Override

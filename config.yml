@@ -1,15 +1,19 @@
 presets:
   sample:
-    stand.name: It works!
-    stand.nobaseplate: true
-    stand.nogravity: true
-    stand.pose.body.x: -10.0
-    stand.pose.body.z: 10.0
-    stand.pose.head: [0.0, 20.0, 15.0]
-    stand.pose.leftarm.x: -40.0
-    stand.pose.leftleg.x: -75.0
-    stand.pose.leftleg.y: -30.0
-    stand.pose.rightarm.y: -60.0
-    stand.pose.rightarm.z: 150.0
-    stand.pose.rightleg: [20.0, -30.0, 45.0]
-    stand.showarms: true
+    stand_name: It works!
+    stand_nobaseplate: true
+    stand_nogravity: true
+    stand_pose_body_x: -10.0
+    stand_pose_body_z: 10.0
+    stand_pose_head_x: 0.0
+    stand_pose_head_y: 20.0
+    stand_pose_head_z: 15.0
+    stand_pose_leftarm_x: -40.0
+    stand_pose_leftleg_x: -75.0
+    stand_pose_leftleg_y: -30.0
+    stand_pose_rightarm_y: -60.0
+    stand_pose_rightarm_z: 150.0
+    stand_pose_rightleg_x: 20.0
+    stand_pose_rightleg_y: -30.0
+    stand_pose_rightleg_z: 45.0
+    stand_showarms: true
