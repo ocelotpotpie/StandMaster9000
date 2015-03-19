@@ -52,7 +52,7 @@ public class ModifierCommand extends AbstractCommand {
         try {
             StandMasterData value = StandMasterPlugin.getInstance().getModifierTable()
                     .get(context, getName()).getType().wrapValue(CommandTree.join(args, " "));
-            StandMasterPlugin.getInstance().getModifierList(player).add(
+            StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers().add(
                     StandMasterPlugin.getInstance().getModifierTable().get(context, getName())
                     .apply(value));
             player.sendMessage(ChatColor.AQUA + "Modifier added.");

@@ -12,17 +12,18 @@ import com.michaelelin.standmaster.StandMasterException;
 import com.michaelelin.standmaster.StandMasterPlugin;
 
 /**
- * A command to add an armor stand preset.
+ * A command to make the player's modifier set persist across play sessions and
+ * after placing armor stands.
  */
-public class PresetAddCommand extends AbstractCommand {
+public class PersistCommand extends AbstractCommand {
 
     /**
-     * Constructs a {@code PresetAddCommand} from the given name and description.
+     * Constructs a {@code PersistCommand} from the given name and description.
      *
      * @param name the command's name
      * @param description the command's description
      */
-    public PresetAddCommand(String name, String description) {
+    public PersistCommand(String name, String description) {
         super(name, description);
     }
 
@@ -30,7 +31,12 @@ public class PresetAddCommand extends AbstractCommand {
     public void printHelp(CommandSender sender, Collection<String> context) {
         super.printHelp(sender, context);
         sender.sendMessage("Usage: " + CommandTree.getFullCommand(context, getName())
-                + " <preset>");
+                + " <BOOLEAN>");
+        if (sender instanceof Player) {
+            sender.sendMessage(ChatColor.AQUA + "Your current persistence setting: "
+                    + StandMasterPlugin.getInstance().getPlayerSettings((Player) sender)
+                    .persists());
+        }
     }
 
     @Override
@@ -41,14 +47,12 @@ public class PresetAddCommand extends AbstractCommand {
 
         Player player = (Player) sender;
 
-        String name = args.poll();
-
-        if (name == null || !args.isEmpty()) {
-            printHelp(sender, context);
+        if (args.size() == 1) {
+            boolean value = Boolean.parseBoolean(args.poll());
+            StandMasterPlugin.getInstance().getPlayerSettings(player).persist(value);
+            sender.sendMessage(ChatColor.AQUA + "Modifier persistence set to " + value);
         } else {
-            StandMasterPlugin.getInstance().getPresetManager().add(name,
-                    StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers());
-            player.sendMessage(ChatColor.AQUA + "Preset saved.");
+            printHelp(sender, context);
         }
     }
 

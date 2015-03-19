@@ -33,7 +33,7 @@ public class ClearCommand extends AbstractCommand {
         Player player = (Player) sender;
 
         if (args.isEmpty()) {
-            StandMasterPlugin.getInstance().getModifierList(player).clear();
+            StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers().clear();
             player.sendMessage(ChatColor.AQUA + "Modifier list cleared.");
         } else {
             printHelp(player, context);

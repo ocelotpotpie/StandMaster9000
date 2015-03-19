@@ -55,7 +55,7 @@ public final class RotationCommand extends ParentCommand {
                 for (int i = 0; i < 3; i++) {
                     DataModifier<?, ?> modifier = StandMasterPlugin.getInstance()
                             .getModifierTable().get(context, getName() + "." + axes[i]);
-                    StandMasterPlugin.getInstance().getModifierList(player).add(
+                    StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers().add(
                             modifier.apply(modifier.getType().wrapValue(args.poll())));
                 }
                 player.sendMessage(ChatColor.AQUA + "Modifier added.");

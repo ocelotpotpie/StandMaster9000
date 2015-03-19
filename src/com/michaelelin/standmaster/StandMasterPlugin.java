@@ -1,5 +1,6 @@
 package com.michaelelin.standmaster;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class StandMasterPlugin extends JavaPlugin {
 
     private static StandMasterPlugin instance;
-    private Map<Player, ModifierSet> modifiers;
+
+    private Map<String, PlayerSettings> players;
     private ModifierTable modifierTable;
     private CommandTree commands;
     private PresetManager presetManager;
@@ -33,7 +35,8 @@ public class StandMasterPlugin extends JavaPlugin {
         this.reloadConfig();
 
         instance = this;
-        modifiers = new HashMap<>();
+
+        players = new HashMap<>();
         modifierTable = new ModifierTable();
         modifierTable.addDefaults();
         commands = new CommandTree();
@@ -60,30 +63,36 @@ public class StandMasterPlugin extends JavaPlugin {
         return true;
     }
 
+    private File getConfiguration(Player player) {
+        return new File(this.getDataFolder(), "players" + File.separator
+                + player.getUniqueId().toString() + ".yml");
+    }
+
     /**
-     * Returns the given player's armor stand modifier list.
+     * Returns the given player's settings.
      *
      * @param player the player
-     * @return the player's modifier list
+     * @return the player's settings
      */
-    public ModifierSet getModifierList(Player player) {
-        if (modifiers.containsKey(player)) {
-            return modifiers.get(player);
+    public PlayerSettings getPlayerSettings(Player player) {
+        if (players.containsKey(player.getName())) {
+            return players.get(player.getName());
         } else {
-            ModifierSet list = new ModifierSet();
-            modifiers.put(player, list);
-            return list;
+            PlayerSettings settings = new PlayerSettings(getConfiguration(player));
+            players.put(player.getName(), settings);
+            return settings;
         }
     }
 
     /**
-     * Removes the given player's modifier list, if it exists.
+     * Removes the given player's settings from memory.
      *
      * @param player the player
      */
-    public void removeModifierList(Player player) {
-        if (modifiers.containsKey(player)) {
-            modifiers.remove(player);
+    public void removePlayerSettings(Player player) {
+        if (players.containsKey(player.getName())) {
+            players.get(player.getName()).save();
+            players.remove(player.getName());
         }
     }
 

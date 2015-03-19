@@ -12,6 +12,7 @@ import com.michaelelin.standmaster.command.ClearCommand;
 import com.michaelelin.standmaster.command.ListCommand;
 import com.michaelelin.standmaster.command.ModifierCommand;
 import com.michaelelin.standmaster.command.ParentCommand;
+import com.michaelelin.standmaster.command.PersistCommand;
 import com.michaelelin.standmaster.command.PresetAddCommand;
 import com.michaelelin.standmaster.command.PresetCommand;
 import com.michaelelin.standmaster.command.PresetRemoveCommand;
@@ -27,6 +28,8 @@ public class CommandTree {
     private StandMasterCommand commandBase = new ParentCommand("stand", "Armor stand commands")
         .addSubcommand(new ReloadCommand("reload", "Reloads the plugin's configuration")
             .setPermission("standmaster.reload"))
+        .addSubcommand(new PersistCommand("persist", "Prevents your modifier list from clearing")
+            .setPermission("standmaster.persist"))
         .addSubcommand(new PresetCommand("preset", "Loads a modifier preset")
             .addSubcommand(new PresetAddCommand("add", "Adds a modifier preset")
                 .setPermission("standmaster.preset.add"))

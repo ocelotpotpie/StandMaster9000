@@ -63,7 +63,8 @@ public final class PresetCommand extends ParentCommand {
             if (mods == null || !args.isEmpty()) {
                 printHelp(player, context);
             } else {
-                StandMasterPlugin.getInstance().getModifierList(player).addAll(mods);
+                StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers()
+                        .addAll(mods);
                 player.sendMessage(ChatColor.AQUA + "Preset loaded.");
             }
         } else if (command.canUse(sender)) {

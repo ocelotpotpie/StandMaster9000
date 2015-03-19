@@ -47,12 +47,16 @@ public class StandMasterListener implements Listener {
                         && p.location.getBlockY() == loc.getBlockY()
                         && p.location.getBlockZ() == loc.getBlockZ()
                         && p.time == loc.getWorld().getFullTime()) {
-                    ModifierSet mods = StandMasterPlugin.getInstance().getModifierList(p.player);
+                    PlayerSettings settings = StandMasterPlugin.getInstance()
+                            .getPlayerSettings(p.player);
+                    ModifierSet mods = settings.getModifiers();
                     for (DataModifier<?, ?>.Executable mod : mods) {
                         mod.modify(event.getEntity());
                     }
                     placements.remove(i);
-                    mods.clear();
+                    if (!settings.persists()) {
+                        mods.clear();
+                    }
                 } else if (p.time < event.getLocation().getWorld().getFullTime()) {
                     placements.remove(i);
                 }
@@ -62,7 +66,7 @@ public class StandMasterListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
-        StandMasterPlugin.getInstance().removeModifierList(event.getPlayer());
+        StandMasterPlugin.getInstance().removePlayerSettings(event.getPlayer());
     }
 
 }

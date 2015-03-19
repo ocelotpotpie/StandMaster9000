@@ -1,5 +1,5 @@
 name: ${project.name}
-main: com.michaelelin.StandMaster.StandMasterPlugin
+main: com.michaelelin.standmaster.StandMasterPlugin
 version: ${project.version}
 description: ${project.description}
 website: ${project.url}
