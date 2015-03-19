@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.data;
+package com.michaelelin.standmaster.data;
 
 /**
  * Represents data used to modify entities.

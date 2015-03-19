@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.command;
+package com.michaelelin.standmaster.command;
 
 import java.util.Deque;
 
@@ -6,9 +6,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.michaelelin.StandMaster.StandMasterException;
-import com.michaelelin.StandMaster.StandMasterPlugin;
-import com.michaelelin.StandMaster.data.DataModifier;
+import com.michaelelin.standmaster.StandMasterException;
+import com.michaelelin.standmaster.StandMasterPlugin;
+import com.michaelelin.standmaster.data.DataModifier;
 
 /**
  * A command to print the player's current modifier list.

@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.data;
+package com.michaelelin.standmaster.data;
 
 /**
  * Interface designed to be implemented in order to mutate data of type

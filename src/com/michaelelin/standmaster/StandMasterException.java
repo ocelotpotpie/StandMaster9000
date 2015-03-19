@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster;
+package com.michaelelin.standmaster;
 
 /**
  * An exception thrown by StandMaster9000.

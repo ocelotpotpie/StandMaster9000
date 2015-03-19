@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.command;
+package com.michaelelin.standmaster.command;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,7 +7,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import com.michaelelin.StandMaster.CommandTree;
+import com.michaelelin.standmaster.CommandTree;
 
 /**
  * An abstract {@code StandMasterCommand} implementation.

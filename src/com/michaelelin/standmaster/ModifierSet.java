@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster;
+package com.michaelelin.standmaster;
 
 import java.util.AbstractSet;
 import java.util.Collection;
@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
-import com.michaelelin.StandMaster.data.DataModifier;
+import com.michaelelin.standmaster.data.DataModifier;
 
 /**
  * A set of modifiers.

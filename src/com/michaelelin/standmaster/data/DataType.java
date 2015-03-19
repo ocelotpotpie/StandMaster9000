@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.data;
+package com.michaelelin.standmaster.data;
 
 import java.util.HashMap;
 import java.util.Map;

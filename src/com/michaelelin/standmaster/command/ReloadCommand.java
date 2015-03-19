@@ -1,11 +1,11 @@
-package com.michaelelin.StandMaster.command;
+package com.michaelelin.standmaster.command;
 
 import java.util.Deque;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import com.michaelelin.StandMaster.StandMasterPlugin;
+import com.michaelelin.standmaster.StandMasterPlugin;
 
 /**
  * A command to reload the plugin's configuration.

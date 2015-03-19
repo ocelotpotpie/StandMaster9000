@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.data;
+package com.michaelelin.standmaster.data;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;

@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster;
+package com.michaelelin.standmaster;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,13 +8,13 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.EulerAngle;
 
-import com.michaelelin.StandMaster.data.BooleanData;
-import com.michaelelin.StandMaster.data.DataAccessor;
-import com.michaelelin.StandMaster.data.DataModifier;
-import com.michaelelin.StandMaster.data.DataMutator;
-import com.michaelelin.StandMaster.data.DataType;
-import com.michaelelin.StandMaster.data.FloatData;
-import com.michaelelin.StandMaster.data.StringData;
+import com.michaelelin.standmaster.data.BooleanData;
+import com.michaelelin.standmaster.data.DataAccessor;
+import com.michaelelin.standmaster.data.DataModifier;
+import com.michaelelin.standmaster.data.DataMutator;
+import com.michaelelin.standmaster.data.DataType;
+import com.michaelelin.standmaster.data.FloatData;
+import com.michaelelin.standmaster.data.StringData;
 
 /**
  * A table that maps commands (as strings or context,name pairs) to

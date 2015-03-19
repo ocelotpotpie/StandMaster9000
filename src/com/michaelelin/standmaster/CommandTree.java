@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster;
+package com.michaelelin.standmaster;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -8,16 +8,16 @@ import java.util.Iterator;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import com.michaelelin.StandMaster.command.ClearCommand;
-import com.michaelelin.StandMaster.command.ListCommand;
-import com.michaelelin.StandMaster.command.ModifierCommand;
-import com.michaelelin.StandMaster.command.ParentCommand;
-import com.michaelelin.StandMaster.command.PresetAddCommand;
-import com.michaelelin.StandMaster.command.PresetCommand;
-import com.michaelelin.StandMaster.command.PresetRemoveCommand;
-import com.michaelelin.StandMaster.command.ReloadCommand;
-import com.michaelelin.StandMaster.command.RotationCommand;
-import com.michaelelin.StandMaster.command.StandMasterCommand;
+import com.michaelelin.standmaster.command.ClearCommand;
+import com.michaelelin.standmaster.command.ListCommand;
+import com.michaelelin.standmaster.command.ModifierCommand;
+import com.michaelelin.standmaster.command.ParentCommand;
+import com.michaelelin.standmaster.command.PresetAddCommand;
+import com.michaelelin.standmaster.command.PresetCommand;
+import com.michaelelin.standmaster.command.PresetRemoveCommand;
+import com.michaelelin.standmaster.command.ReloadCommand;
+import com.michaelelin.standmaster.command.RotationCommand;
+import com.michaelelin.standmaster.command.StandMasterCommand;
 
 /**
  * Handles commands and provides some command-related tools.

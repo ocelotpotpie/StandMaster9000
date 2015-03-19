@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster;
+package com.michaelelin.standmaster;
 
 import java.util.ArrayList;
 import java.util.HashMap;

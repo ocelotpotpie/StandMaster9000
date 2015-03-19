@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster;
+package com.michaelelin.standmaster;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.michaelelin.StandMaster.StandMasterPlugin.Placement;
-import com.michaelelin.StandMaster.data.DataModifier;
+import com.michaelelin.standmaster.StandMasterPlugin.Placement;
+import com.michaelelin.standmaster.data.DataModifier;
 
 /**
  * StandMaster9000 event handling.

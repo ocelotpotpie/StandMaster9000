@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.data;
+package com.michaelelin.standmaster.data;
 
 /**
  * A float wrapper.

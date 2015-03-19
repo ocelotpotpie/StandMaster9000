@@ -1,4 +1,4 @@
-package com.michaelelin.StandMaster.command;
+package com.michaelelin.standmaster.command;
 
 import java.util.Collection;
 import java.util.Deque;
@@ -7,9 +7,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.michaelelin.StandMaster.CommandTree;
-import com.michaelelin.StandMaster.StandMasterException;
-import com.michaelelin.StandMaster.StandMasterPlugin;
+import com.michaelelin.standmaster.CommandTree;
+import com.michaelelin.standmaster.StandMasterException;
+import com.michaelelin.standmaster.StandMasterPlugin;
 
 /**
  * A command to add an armor stand preset.
