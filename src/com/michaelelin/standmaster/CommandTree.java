@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import com.michaelelin.standmaster.command.ClearCommand;
 import com.michaelelin.standmaster.command.ListCommand;
@@ -19,6 +20,7 @@ import com.michaelelin.standmaster.command.PresetRemoveCommand;
 import com.michaelelin.standmaster.command.ReloadCommand;
 import com.michaelelin.standmaster.command.RotationCommand;
 import com.michaelelin.standmaster.command.StandMasterCommand;
+import com.michaelelin.standmaster.config.Configuration;
 
 /**
  * Handles commands and provides some command-related tools.
@@ -31,10 +33,36 @@ public class CommandTree {
         .addSubcommand(new PersistCommand("persist", "Prevents your modifier list from clearing")
             .setPermission("standmaster.persist"))
         .addSubcommand(new PresetCommand("preset", "Loads a modifier preset")
-            .addSubcommand(new PresetAddCommand("add", "Adds a modifier preset")
+            .addSubcommand(new PresetAddCommand("add", "Adds a personal modifier preset") {
+                @Override
+                protected Configuration getConfig(Player sender) {
+                    return StandMasterPlugin.getInstance().getPlayerSettings(sender);
+                }
+            }
                 .setPermission("standmaster.preset.add"))
-            .addSubcommand(new PresetRemoveCommand("remove", "Removes a modifier preset")
+            .addSubcommand(new PresetRemoveCommand("remove",
+                    "Removes a personal modifier preset") {
+                @Override
+                protected Configuration getConfig(Player sender) {
+                    return StandMasterPlugin.getInstance().getPlayerSettings(sender);
+                }
+            }
                 .setPermission("standmaster.preset.remove"))
+            .addSubcommand(new PresetAddCommand("addglobal", "Adds a global modifier preset") {
+                @Override
+                protected Configuration getConfig(Player sender) {
+                    return StandMasterPlugin.getInstance().getGlobalConfig();
+                }
+            }
+                .setPermission("standmaster.preset.addglobal"))
+            .addSubcommand(new PresetRemoveCommand("removeglobal",
+                    "Removes a global modifier preset") {
+                @Override
+                protected Configuration getConfig(Player sender) {
+                    return StandMasterPlugin.getInstance().getGlobalConfig();
+                }
+            }
+                .setPermission("standmaster.preset.removeglobal"))
             .setPermission("standmaster.preset.load"))
         .addSubcommand(new ListCommand("list", "Shows your current stand modifier list")
             .setPermission("standmaster.stand.list"))

@@ -12,6 +12,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.michaelelin.standmaster.config.GlobalConfiguration;
+import com.michaelelin.standmaster.config.PlayerConfiguration;
+
 /**
  * The StandMaster9000 plugin.
  */
@@ -19,10 +22,10 @@ public class StandMasterPlugin extends JavaPlugin {
 
     private static StandMasterPlugin instance;
 
-    private Map<String, PlayerSettings> players;
+    private Map<String, PlayerConfiguration> players;
     private ModifierTable modifierTable;
     private CommandTree commands;
-    private PresetManager presetManager;
+    private GlobalConfiguration configuration;
 
     /**
      * A list of armor stand placement data to be processed.
@@ -40,7 +43,7 @@ public class StandMasterPlugin extends JavaPlugin {
         modifierTable = new ModifierTable();
         modifierTable.addDefaults();
         commands = new CommandTree();
-        presetManager = new PresetManager();
+        configuration = new GlobalConfiguration(new File(this.getDataFolder(), "config.yml"));
         placements = new ArrayList<Placement>();
         getServer().getPluginManager().registerEvents(new StandMasterListener(), this);
     }
@@ -54,7 +57,7 @@ public class StandMasterPlugin extends JavaPlugin {
      * Reloads the plugin's configuration.
      */
     public void reload() {
-        presetManager.loadPresets();
+        configuration.load();
     }
 
     @Override
@@ -74,11 +77,11 @@ public class StandMasterPlugin extends JavaPlugin {
      * @param player the player
      * @return the player's settings
      */
-    public PlayerSettings getPlayerSettings(Player player) {
+    public PlayerConfiguration getPlayerSettings(Player player) {
         if (players.containsKey(player.getName())) {
             return players.get(player.getName());
         } else {
-            PlayerSettings settings = new PlayerSettings(getConfiguration(player));
+            PlayerConfiguration settings = new PlayerConfiguration(getConfiguration(player));
             players.put(player.getName(), settings);
             return settings;
         }
@@ -106,12 +109,12 @@ public class StandMasterPlugin extends JavaPlugin {
     }
 
     /**
-     * Returns the preset manager.
+     * Returns the global configuration.
      *
-     * @return the preset manager
+     * @return the global configuration
      */
-    public PresetManager getPresetManager() {
-        return presetManager;
+    public GlobalConfiguration getGlobalConfig() {
+        return configuration;
     }
 
     /**

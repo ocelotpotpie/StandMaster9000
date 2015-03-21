@@ -10,11 +10,12 @@ import org.bukkit.entity.Player;
 import com.michaelelin.standmaster.CommandTree;
 import com.michaelelin.standmaster.StandMasterException;
 import com.michaelelin.standmaster.StandMasterPlugin;
+import com.michaelelin.standmaster.config.Configuration;
 
 /**
  * A command to add an armor stand preset.
  */
-public class PresetAddCommand extends AbstractCommand {
+public abstract class PresetAddCommand extends AbstractCommand {
 
     /**
      * Constructs a {@code PresetAddCommand} from the given name and description.
@@ -46,10 +47,15 @@ public class PresetAddCommand extends AbstractCommand {
         if (name == null || !args.isEmpty()) {
             printHelp(sender, context);
         } else {
-            StandMasterPlugin.getInstance().getPresetManager().add(name,
-                    StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers());
-            player.sendMessage(ChatColor.AQUA + "Preset saved.");
+            if (getConfig(player).addPreset(name, StandMasterPlugin.getInstance()
+                    .getPlayerSettings(player).getModifiers())) {
+                player.sendMessage(ChatColor.AQUA + "Preset saved.");
+            } else {
+                throw new StandMasterException("That preset is already set; remove it first.");
+            }
         }
     }
+
+    protected abstract Configuration getConfig(Player sender);
 
 }

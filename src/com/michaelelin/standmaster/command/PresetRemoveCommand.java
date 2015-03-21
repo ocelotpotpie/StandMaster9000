@@ -9,12 +9,12 @@ import org.bukkit.entity.Player;
 
 import com.michaelelin.standmaster.CommandTree;
 import com.michaelelin.standmaster.StandMasterException;
-import com.michaelelin.standmaster.StandMasterPlugin;
+import com.michaelelin.standmaster.config.Configuration;
 
 /**
  * A command to remove an armor stand preset.
  */
-public class PresetRemoveCommand extends AbstractCommand {
+public abstract class PresetRemoveCommand extends AbstractCommand {
 
     /**
      * Constructs a {@code PresetRemoveCommand} from the given name and description.
@@ -43,12 +43,17 @@ public class PresetRemoveCommand extends AbstractCommand {
 
         String name = args.poll();
 
-        if (name != null && args.isEmpty()
-                && StandMasterPlugin.getInstance().getPresetManager().remove(name)) {
-            player.sendMessage(ChatColor.AQUA + "Preset removed.");
+        if (name != null && args.isEmpty()) {
+            if (getConfig(player).removePreset(name)) {
+                player.sendMessage(ChatColor.AQUA + "Preset removed.");
+            } else {
+                throw new StandMasterException("That preset does not exist.");
+            }
         } else {
             printHelp(sender, context);
         }
     }
+
+    protected abstract Configuration getConfig(Player sender);
 
 }

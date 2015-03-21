@@ -11,6 +11,7 @@ import com.michaelelin.standmaster.CommandTree;
 import com.michaelelin.standmaster.ModifierSet;
 import com.michaelelin.standmaster.StandMasterException;
 import com.michaelelin.standmaster.StandMasterPlugin;
+import com.michaelelin.standmaster.config.Configuration;
 
 /**
  * A command to load, add, or remove a modifier preset.
@@ -40,9 +41,22 @@ public final class PresetCommand extends ParentCommand {
             printSubcommands(sender);
         }
         sender.sendMessage("========");
-        sender.sendMessage(ChatColor.AQUA + "Armor stand presets:");
-        for (String preset : StandMasterPlugin.getInstance().getPresetManager().listPresets()) {
+
+        sender.sendMessage(ChatColor.AQUA + "Global presets:");
+        for (String preset : StandMasterPlugin.getInstance().getGlobalConfig().listPresets()) {
             sender.sendMessage(preset);
+        }
+
+        if (sender instanceof Player) {
+            Configuration config = StandMasterPlugin.getInstance()
+                    .getPlayerSettings((Player) sender);
+            Collection<String> presets = config.listPresets();
+            if (!presets.isEmpty()) {
+                sender.sendMessage(ChatColor.AQUA + "Your presets:");
+                for (String preset : presets) {
+                    sender.sendMessage(preset);
+                }
+            }
         }
     }
 
@@ -59,14 +73,17 @@ public final class PresetCommand extends ParentCommand {
         StandMasterCommand command = getSubcommand(arg);
 
         if (command == null) {
-            ModifierSet mods = StandMasterPlugin.getInstance().getPresetManager().get(arg);
-            if (mods == null || !args.isEmpty()) {
-                printHelp(player, context);
-            } else {
-                StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers()
-                        .addAll(mods);
-                player.sendMessage(ChatColor.AQUA + "Preset loaded.");
+            ModifierSet mods = StandMasterPlugin.getInstance().getPlayerSettings(player)
+                    .getPreset(arg);
+            if (mods == null) {
+                mods = StandMasterPlugin.getInstance().getGlobalConfig().getPreset(arg);
+                if (mods == null || !args.isEmpty()) {
+                    printHelp(player, context);
+                    return;
+                }
             }
+            StandMasterPlugin.getInstance().getPlayerSettings(player).getModifiers().addAll(mods);
+            player.sendMessage(ChatColor.AQUA + "Preset loaded.");
         } else if (command.canUse(sender)) {
             context.add(getName());
             command.execute(sender, context, args);

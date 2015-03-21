@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.michaelelin.standmaster.StandMasterPlugin.Placement;
+import com.michaelelin.standmaster.config.PlayerConfiguration;
 import com.michaelelin.standmaster.data.DataModifier;
 
 /**
@@ -47,7 +48,7 @@ public class StandMasterListener implements Listener {
                         && p.location.getBlockY() == loc.getBlockY()
                         && p.location.getBlockZ() == loc.getBlockZ()
                         && p.time == loc.getWorld().getFullTime()) {
-                    PlayerSettings settings = StandMasterPlugin.getInstance()
+                    PlayerConfiguration settings = StandMasterPlugin.getInstance()
                             .getPlayerSettings(p.player);
                     ModifierSet mods = settings.getModifiers();
                     for (DataModifier<?, ?>.Executable mod : mods) {
