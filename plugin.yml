@@ -4,7 +4,6 @@ version: ${project.version}
 description: ${project.description}
 website: ${project.url}
 database: false
-softdepend: [WorldGuard]
 authors: [Dumbo52]
 commands:
   stand:

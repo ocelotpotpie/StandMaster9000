@@ -3,6 +3,8 @@ package com.michaelelin.standmaster.config;
 import java.io.File;
 
 import com.michaelelin.standmaster.ModifierSet;
+import com.michaelelin.standmaster.StandMasterException;
+import com.michaelelin.standmaster.StandMasterPlugin;
 
 /**
  * Per-player configuration.
@@ -38,6 +40,16 @@ public class PlayerConfiguration extends AbstractConfiguration {
         config.set("persist", persist);
         config.set("modifiers", persist ? modifiers.serialize() : null);
         super.save();
+    }
+
+    @Override
+    public boolean addPreset(String name, ModifierSet preset) {
+        int limit = StandMasterPlugin.getInstance().getGlobalConfig().getPlayerPresetLimit();
+        if (limit > 0 && presets.size() >= limit) {
+            throw new StandMasterException("You have reached the player preset limit of " + limit
+                    + ". Remove a preset first.");
+        }
+        return super.addPreset(name, preset);
     }
 
     /**

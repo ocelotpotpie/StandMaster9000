@@ -7,9 +7,13 @@ This plugin works by allowing players to make *modifications* to armor stand dat
 Info on all available modifications is in the [Commands](#commands) section.
 
 ## Presets
-Presets are an easy way to apply several modifications at once. Anyone with the *standmaster.preset.add* permission can save their current modifier list to a preset with "/stand preset add \<name\>", which can then be loaded by anyone with the *stand.preset.load* permission using "/stand preset \<name\>". Other modifications can be added before or after loading a preset. Presets are removed with "/stand preset remove \<name\>" by anyone with the *standmaster.preset.remove* permission.
+Presets are an easy way to apply several modifications at once. StandMaster9000 allows two types of presets: global presets, and player presets.
+
+Global presets are presets available to all players on the server. Anyone with the *standmaster.preset.addglobal* permission can save their current modifier list to a preset with "/stand preset addglobal \<name\>", which can then be loaded by anyone with the *stand.preset.load* permission using "/stand preset \<name\>". Other modifications can be added before or after loading a preset. Presets are removed with "/stand preset removeglobal \<name\>" by anyone with the *standmaster.preset.removeglobal* permission.
 
 Presets are saved into and loaded from config.yml, under "presets.\<name\>". Therefore, they can also be edited by the server owner in a text editor. To reload the file once it's been edited, anyone with the *standmaster.reload* permission can run "/stand reload". A sample preset has been included to show you the YAML structure of these presets.
+
+Player presets work like global presets, except that they are local to the player who created them. Each player has their own preset list, which they can add presets to, remove presets from, or load presets from.
 
 ## Data Types
 **BOOLEAN**: Either *true* or *false*. Any input other than *true* in a boolean field will default to *false*. Examples: true, false

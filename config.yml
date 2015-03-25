@@ -1,3 +1,8 @@
+limits:
+  preset:
+    # A negative integer indicates no limit.
+    global: -1
+    player: 3
 presets:
   sample:
     stand_name: It works!
