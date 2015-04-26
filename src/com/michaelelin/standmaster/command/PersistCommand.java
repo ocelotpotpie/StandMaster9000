@@ -31,7 +31,7 @@ public class PersistCommand extends AbstractCommand {
     public void printHelp(CommandSender sender, Collection<String> context) {
         super.printHelp(sender, context);
         sender.sendMessage("Usage: " + CommandTree.getFullCommand(context, getName())
-                + " <BOOLEAN>");
+                + " <TRUE/FALSE>");
         if (sender instanceof Player) {
             sender.sendMessage(ChatColor.AQUA + "Your current persistence setting: "
                     + StandMasterPlugin.getInstance().getPlayerSettings((Player) sender)
