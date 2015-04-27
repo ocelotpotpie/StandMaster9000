@@ -88,24 +88,24 @@ public enum DataType {
         return dataMap.get(clazz);
     }
 
-	/**
-	 * Returns the user-friendly string describing the data type.
-	 * 
-	 * @return the user-friendly string
-	 */
+    /**
+     * Returns the user-friendly string describing the data type.
+     * 
+     * @return the user-friendly string
+     */
     @Override
-	public String toString() {
+    public String toString() {
         switch(this) {
         case BOOLEAN:
-		    return new String("TRUE/FALSE");
-		case INT:
-		    return new String("NUMBER");
-		case FLOAT:
-			return new String("DECIMAL");
-		case STRING:
-			return new String("WORD");
-		default:
-			return null;
-		}
-	}    
+            return "TRUE/FALSE";
+        case INT:
+            return "INTEGER";
+        case FLOAT:
+            return "NUMBER";
+        case STRING:
+            return "TEXT";
+        default:
+            return null;
+        }
+    }  
 }
