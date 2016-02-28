@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.EulerAngle;
@@ -59,7 +60,7 @@ public class ModifierTable {
                 DataType.STRING, EntityType.ARMOR_STAND) {
             @Override
             protected void execute(ArmorStand object, StringData value) {
-                object.setCustomName(value.value);
+                object.setCustomName(ChatColor.translateAlternateColorCodes('&', value.value));
                 object.setCustomNameVisible(true);
             }
         });
