@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.michaelelin</groupId>
   <artifactId>StandMaster9000</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <name>StandMaster9000</name>
   <url>https://github.com/Dumbo52/StandMaster9000</url>
   <build>
@@ -38,7 +38,7 @@
       <dependency>
           <groupId>org.bukkit</groupId>
           <artifactId>bukkit</artifactId>
-          <version>1.8-R0.1-SNAPSHOT</version>
+          <version>1.8.7-R0.1-SNAPSHOT</version>
       </dependency>
   </dependencies>
   <description>Allows in-game editing of armor stand data.</description>
