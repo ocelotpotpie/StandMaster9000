@@ -8,4 +8,4 @@ authors: [Dumbo52]
 commands:
   stand:
     description: StandMaster9000 commands
-    aliases: [sm, standmaster]
+    aliases: [sm, standmaster, standmaster9000]

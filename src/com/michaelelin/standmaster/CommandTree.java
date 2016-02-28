@@ -95,7 +95,8 @@ public class CommandTree {
         .addSubcommand(new ModifierCommand("small", "Makes the stand smaller")
             .setPermission("standmaster.stand.small"))
         .addAlias("sm")
-        .addAlias("standmaster");
+        .addAlias("standmaster")
+        .addAlias("standmaster9000");
 
     /**
      * Run a command from the given sender with the given arguments.
