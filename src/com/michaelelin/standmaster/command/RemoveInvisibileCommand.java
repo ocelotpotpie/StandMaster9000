@@ -43,7 +43,7 @@ public class RemoveInvisibileCommand extends AbstractCommand {
         	sme.addSuppressed(e);
         	throw sme;
         }
-        if (radius > 25.0) {
+        if (radius > 25.0 || radius < 0.0) {
         	throw new StandMasterException("Remove all armor stands in a radius of " + radius + "? LOL. No.");
         }
        
