@@ -18,6 +18,7 @@ import com.michaelelin.standmaster.command.PresetAddCommand;
 import com.michaelelin.standmaster.command.PresetCommand;
 import com.michaelelin.standmaster.command.PresetRemoveCommand;
 import com.michaelelin.standmaster.command.ReloadCommand;
+import com.michaelelin.standmaster.command.RemoveInvisibileCommand;
 import com.michaelelin.standmaster.command.RotationCommand;
 import com.michaelelin.standmaster.command.StandMasterCommand;
 import com.michaelelin.standmaster.config.Configuration;
@@ -30,6 +31,8 @@ public class CommandTree {
     private StandMasterCommand commandBase = new ParentCommand("stand", "Armor stand commands")
         .addSubcommand(new ReloadCommand("reload", "Reloads the plugin's configuration")
             .setPermission("standmaster.reload"))
+        .addSubcommand(new RemoveInvisibileCommand("removeinvisible", "Remove all invisible armor stands in a specified radius")
+        	.setPermission("standmaster.removeinvisible"))
         .addSubcommand(new PersistCommand("persist", "Prevents your modifier list from clearing")
             .setPermission("standmaster.persist"))
         .addSubcommand(new PresetCommand("preset", "Loads a modifier preset")
