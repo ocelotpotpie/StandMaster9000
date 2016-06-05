@@ -67,6 +67,7 @@ public abstract class AbstractConfiguration implements Configuration {
     public boolean removePreset(String name) {
         if (presets.remove(name) != null) {
             getPresetSection().set(name, null);
+            save();
             return true;
         }
         return false;
