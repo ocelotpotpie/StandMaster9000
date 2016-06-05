@@ -55,7 +55,7 @@ public abstract class AbstractConfiguration implements Configuration {
     @Override
     public boolean addPreset(String name, ModifierSet preset) {
         if (!presets.containsKey(name.toLowerCase())) {
-            presets.put(name, preset);
+            presets.put(name, preset.clone());
             getPresetSection().createSection(name.toLowerCase(), preset.serialize());
             save();
             return true;
