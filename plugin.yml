@@ -5,6 +5,7 @@ description: ${project.description}
 website: ${project.url}
 database: false
 authors: [Dumbo52]
+api-version: 1.17
 commands:
   stand:
     description: StandMaster9000 commands
